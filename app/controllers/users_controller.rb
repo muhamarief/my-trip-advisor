@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if params[:user][:password] == params[:user][:password_confirmation]
       if @user.save
+        session[:user_id] = @user.id
         redirect_to root_path, notice: "Thank you for joining us"
       else
         render :new
@@ -20,6 +21,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :username)
   end
 end
