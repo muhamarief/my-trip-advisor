@@ -6,21 +6,19 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if params[:user][:password] == params[:user][:password_confirmation]
-      if @user.save
-        session[:user_id] = @user.id
-        redirect_to root_path, notice: "Thank you for joining us"
-      else
-        render :new
-      end
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: "Thank you for joining us"
     else
-      #password and password_confirmation was not match
       render :new
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :username)
+    params.require(:user).permit( :email,
+                                  :password,
+                                  :password_confirmation,
+                                  :username)
   end
 end
