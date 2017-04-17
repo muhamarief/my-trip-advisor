@@ -2,10 +2,12 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validates :email, uniqueness: { message: "Your email has already been taken!"}
-  validates :email, presence: { message: "You need to type in an email!"}
+  validates :email, uniqueness: true
+  validates :email, presence: true
   validates :password_digest, presence: true
   validates :username, presence: true
   validates :username, uniqueness: true
+  validates :password, length: { in: 6..20 }
+  validates :password_confirmation, presence: true
 
 end
