@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418035904) do
+ActiveRecord::Schema.define(version: 20170418114017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email",                           null: false
+    t.string   "password_digest",                 null: false
+    t.integer  "sign_in_count",   default: 0,     null: false
+    t.boolean  "super_admin",     default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
 
   create_table "authentications", force: :cascade do |t|
     t.string   "provider"
@@ -22,6 +32,20 @@ ActiveRecord::Schema.define(version: 20170418035904) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "token"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_types_on_category_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

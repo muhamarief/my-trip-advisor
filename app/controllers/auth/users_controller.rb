@@ -1,11 +1,15 @@
-class SessionsController < ApplicationController
+class Auth::UsersController < ApplicationController
 
-  def new_user
-    # render :new_user
-  end
+  # def external_auth
+  #   case params[:provider]
+  #   when 'facebook'
+  #     auth = create_facebook_omniauth
+  #   end
+  #   auth
+  # end
 
-  def new_admin
-    # render :new_admin
+  def new
+    @user = User.new
   end
 
   def create_facebook_omniauth
@@ -18,18 +22,6 @@ class SessionsController < ApplicationController
 
   def create
     # withouth facebook user
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to root_path, notice: 'Logged In!'
-    else
-      flash.now.alert = 'Email or password is invalid'
-      render :new
-    end
-  end
-
-  def create_admin
-    # withouth facebook admin
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
