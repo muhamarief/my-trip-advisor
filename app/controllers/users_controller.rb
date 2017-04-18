@@ -10,7 +10,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Thank you for joining us"
     else
-      render :new
+      @message = @user.errors.full_messages
+      render :json => @message.to_json
     end
   end
 
