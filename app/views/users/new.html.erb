@@ -2,8 +2,18 @@
     <h2> Sign Up </h2>
     <%= form_for @user do |form| %>
         <%= render partial: "form", object: form %>
+        <div class="field">
+          <%= label_tag :password %>
+          <%= password_field_tag :password %>
+        </div>
+        <div class="field">
+          <%= label_tag :password_confirmation %>
+          <%= password_field_tag :password_confirmation %>
+        </div>
         <div class"action">
             <%= form.submit "Sign Up"%>
         </div>
     <% end %>
+    <%= link_to "Connect With Facebook", "/auth/facebook" %>
+
 </div>
