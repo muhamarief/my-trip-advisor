@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-
+  
   def index
     # @q = Admin.ransack(params[:q])
     # @q.sorts = 'id' if @q.sorts.empty?

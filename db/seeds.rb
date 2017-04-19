@@ -7,3 +7,41 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(username: "muhamarief", email: "marief.rahman279@yahoo.com", password: "123123123", password_confirmation: "123123123", super_admin: true)
+
+categories = {
+  "Restaurants" => [
+    "Cafe",
+    "Western",
+    "Asian",
+    "Nightlife",
+    "Fast Food",
+    "Indonesian",
+    "Bakery",
+    "Vegetarian",
+    "Kaki Lima",
+  ],
+  "Leisures" => [
+    "Lapangan Futsal",
+    "Lapangan Tenis",
+    "Lapangan Badminton",
+    "Studio Band",
+    "Kolam Renang",
+    "Karaoke",
+    "Group Leisure",
+    "Hiburan Lainnya"
+  ],
+  "Sports" => [
+    "Kursus Futsal",
+    "Kursus Renang",
+    "Kursus Golf",
+    "Kursus Badminton",
+    "Kursus Tenis",
+    "Gym",
+    "Others"
+  ]
+}
+
+categories.each do |key, value|
+  category = Category.create!(name: key)
+  value.each { |v| category.types.create!(name: v) }
+end
