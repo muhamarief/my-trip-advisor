@@ -1,0 +1,24 @@
+<div class='col-md-8 col-xs-12 col-sm-12 col-md-offset-2'>
+    <h2> Assign New Admin </h2>
+    <%= form_for @admin do |form| %>
+        <div class='field'>
+            <%= form.label :username %>
+            <%= form.text_field :username %>
+        </div>
+        <div class='field'>
+            <%= form.label :email %>
+            <%= form.text_field :email %>
+        </div>
+        <div class="field">
+          <%= form.label :password %>
+          <%= form.password_field :password %>
+        </div>
+        <div class="field">
+          <%= form.label :password_confirmation %>
+          <%= form.password_field :password_confirmation %>
+        </div>
+        <div class"action">
+            <%= form.submit "Assign Admin!"%>
+        </div>
+    <% end %>
+</div>

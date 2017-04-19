@@ -1,15 +1,17 @@
 class Auth::AdminsController < ApplicationController
+  layout 'admin'
+  include AdminsHelper
 
   def new
     @admin = Admin.new
   end
 
-  def create_admin
-    # withouth facebook admin
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to root_path, notice: 'Logged In!'
+  def create
+    admin = Admin.find_by(email: params[:email])
+    if admin && admin.authenticate(params[:password])
+      session[:admin_id] = admin.id
+      admin.set_after_login
+      redirect_to admins_path, notice: 'Logged In!'
     else
       flash.now.alert = 'Email or password is invalid'
       render :new
@@ -17,7 +19,7 @@ class Auth::AdminsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:admin_id] = nil
     redirect_to root_path, notice: "Logged Out!"
   end
 

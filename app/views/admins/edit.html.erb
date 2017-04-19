@@ -1,0 +1,20 @@
+<div class='col-md-8 col-xs-12 col-sm-12 col-md-offset-2'>
+    <h2> Assign New Admin </h2>
+    <%= form_for @admin do |form| %>
+        <div class='field'>
+            <%= form.label :username %>
+            <%= form.text_field :username %>
+        </div>
+        <div class='field'>
+            <%= form.label :email, disabled: true %>
+            <%= form.text_field :email %>
+        </div>
+        <div class="field">
+            <%= form.label "Set to be Super Admin" %> <br />
+            <%= form.check_box :super_admin %> <br />
+        </div>
+        <div class"action">
+            <%= form.submit "Update"%>
+        </div>
+    <% end %>
+</div>

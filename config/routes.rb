@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, except: :new
 
   #admin crud
-  # resources :admins
+  resources :admins
 
   #user & admin authentication
   namespace :auth do
@@ -17,20 +17,7 @@ Rails.application.routes.draw do
     get "/:provider/callback", to: "users#create_facebook_omniauth", as: "external"
 
   end
-  # get 'login', to: 'sessions#new_user', as: 'login'
+
   get 'logout', to: 'sessions#destroy', as: 'logout'
-
-
-  # get "/auth/:provider/callback", to: "auth/users#create_facebook_omniauth"
-  # get "/auth/failure", to: "auth/users#failure"
-
-
-  # get '/admin/login', to: 'sessions#new_admin', as: 'admin_session'
-  # post '/sessions', to: "sessions#create_admin", as: 'admin_session_login'
-  # resources :admins, :only => [:create, :destroy]
-
-
-
-  # resources :sessions, only: :create
 
 end
