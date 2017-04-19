@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170418114017) do
     t.string   "password_digest",                 null: false
     t.integer  "sign_in_count",   default: 0,     null: false
     t.boolean  "super_admin",     default: false
+    t.datetime "last_sign_in"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

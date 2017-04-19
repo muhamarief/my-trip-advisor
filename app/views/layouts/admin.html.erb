@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello Admin</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id='user_header'>
+      <% if admin_logged_in? %>
+          <%= link_to 'My Profile', admin_path(current_admin) %>
+          <%= link_to 'Logout', auth_admin_path(current_admin), method: :delete %>
+      <% else %>
+          <%= link_to "Log In", new_auth_admin_path %>
+      <% end %>
+    </div>
+    <%= yield %>
+  </body>
+</html>
