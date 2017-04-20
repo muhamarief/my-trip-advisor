@@ -2,21 +2,21 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  describe "user model should respond to these methods" do
+    it { is_expected.to respond_to(:username) }
+    it { is_expected.to respond_to(:email) }
+    it { is_expected.to respond_to(:username) }
+    it { is_expected.to respond_to(:password) }
+    it { is_expected.to respond_to(:password_confirmation) }
+  end
+
+  it "should have username email and password_digest" do
+    should have_db_column(:username).of_type(:string)
+    should have_db_column(:email).of_type(:string)
+    should have_db_column(:password_digest).of_type(:string)
+  end
+
   context 'validations' do
-
-    describe "user model should respond to these methods" do
-      it { is_expected.to respond_to(:username) }
-      it { is_expected.to respond_to(:email) }
-      it { is_expected.to respond_to(:username) }
-      it { is_expected.to respond_to(:password) }
-      it { is_expected.to respond_to(:password_confirmation) }
-    end
-
-    it "should have username email and password_digest" do
-      should have_db_column(:username).of_type(:string)
-      should have_db_column(:email).of_type(:string)
-      should have_db_column(:password_digest).of_type(:string)
-    end
 
     describe "validates presence and uniqueness of username and email" do
       it { is_expected.to validate_presence_of(:username) }
@@ -55,6 +55,9 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context 'associations' do
+    it { is_expected.to have_many(:customer_reviews)}
+  end
 
 
 end

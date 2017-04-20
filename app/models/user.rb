@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :email, :username, uniqueness: true
   validates :password, length: { in: 6..20 }
 
+  has_many :customer_reviews
+
   def self.from_omniauth(auth)
     find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
   end
