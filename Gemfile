@@ -45,6 +45,7 @@ group :development, :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'rb-fsevent'
+  gem 'rack_session_access'
 end
 
 
