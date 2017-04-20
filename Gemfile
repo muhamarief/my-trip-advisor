@@ -74,3 +74,6 @@ gem 'will_paginate', '~> 3.1.0'
 
 #bootstrap
 gem 'bootstrap-sass'
+
+#search engine ransack
+gem 'ransack'
