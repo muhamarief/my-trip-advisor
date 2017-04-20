@@ -71,3 +71,6 @@ gem 'ransack'
 
 #pagination
 gem 'will_paginate', '~> 3.1.0'
+
+#bootstrap
+gem 'bootstrap-sass'

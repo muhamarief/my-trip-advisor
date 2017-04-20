@@ -20,4 +20,14 @@ Rails.application.routes.draw do
 
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+  #listing routes
+  resources :listings
+
+  namespace :admin do
+    resources :listings do
+      resources :booking_items
+      resources :purchase_items
+      resources :subscribe_items
+    end
+  end
 end

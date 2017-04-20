@@ -1,0 +1,31 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id='admin-listings-action'>
+  <%= button_to "Create New Listing", new_admin_listing_path, method: :get %>
+</div>
+
+<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id='admin-listings'>
+  <% @listings.each do |listing| %>
+        <div class='listings-index'>
+          <a href='/admin/listings/<%=listing.id%>/edit'>
+            <h5 class='listings-item-name'><%= listing.item_name%></h5>
+          </a>
+          <%= listing.description %>
+          <div class='add-listing-details'>
+              <div class='col-md-4 col-sm-4 col-xs-4'>
+                <center>
+                  <%=link_to "Add Booking Item", new_admin_listing_booking_item_path(listing) %>
+                </center>
+              </div>
+              <div class='col-md-4 col-sm-4 col-xs-4'>
+                <center>
+                  <%=link_to "Add Purchase Item", new_admin_listing_purchase_item_path(listing) %>
+                </center>
+              </div>
+              <div class='col-md-4 col-sm-4 col-xs-4'>
+                <center>
+                  <%=link_to "Add Subscribe Item", new_admin_listing_subscribe_item_path(listing) %>
+                </center>
+              </div>
+          </div>
+        </div>
+  <% end %>
+</div>

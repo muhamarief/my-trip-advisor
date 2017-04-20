@@ -11,7 +11,7 @@ class Auth::AdminsController < ApplicationController
     if admin && admin.authenticate(params[:password])
       session[:admin_id] = admin.id
       admin.set_after_login
-      redirect_to admins_path, notice: 'Logged In!'
+      redirect_to admin_listings_path, notice: 'Logged In!'
     else
       flash.now.alert = 'Email or password is invalid'
       render :new

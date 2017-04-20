@@ -1,0 +1,2 @@
+class SubscribeItem < ApplicationRecord
+end
