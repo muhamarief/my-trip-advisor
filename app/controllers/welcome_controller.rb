@@ -1,7 +1,10 @@
 class WelcomeController < ApplicationController
+  include UsersHelper
 
   def index
-    @user = User.find(session[:user_id]) if session[:user_id]
+    @user = current_user
+    @listings = Listing.all
+    @customer_review_new = CustomerReview.new
   end
 
 end

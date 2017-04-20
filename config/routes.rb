@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   #listing routes
-  resources :listings
+  resources :listings do
+    resources :customer_reviews, only: [:create]
+  end
+
+  resources :customer_reviews, only: [:update]
 
   namespace :admin do
     resources :listings do
@@ -30,4 +34,8 @@ Rails.application.routes.draw do
       resources :subscribe_items
     end
   end
+
+  # post "/listings/:listing_id/customer_reviews", to: "customer_reviews#create", as: "listing_customer_reviews"
+  # patch "/customer_reviews/:id", to: "customer_reviews#update", as: "edit_customer_review"
+
 end
