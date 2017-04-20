@@ -1,18 +1,22 @@
-<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id="listing-index-container">
-  <%@listings.each do |listing| %>
-    <div class="jumbotron listing-user-index">
-      <div class='col-md-9 col-xs-9 col-sm-9'>
-        <h5 class='user-listing-title'><%= listing.item_name %></h5>
+<% if logged_in? %>
+
+  <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id="listing-index-container">
+    <%@listings.each do |listing| %>
+      <div class="jumbotron listing-user-index">
+        <div class='col-md-9 col-xs-9 col-sm-9'>
+          <h5 class='user-listing-title'><%= listing.item_name %></h5>
+        </div>
+        <div class='col-md-3 col-xs-3 col-sm-3'>
+          <% @update_recommend = CustomerReview.find_by(user_id: current_user.id, listing_id: listing.id) %>
+          <% if @update_recommend %>
+              <%= render partial: 'welcome/recommend_form' %>
+          <% else %>
+             <%= render partial: 'welcome/new_recommend_form' %>
+          <% end %>
+        </div>
+        <%= listing.description %>
       </div>
-      <div class='col-md-3 col-xs-3 col-sm-3'>
-        <% @update_recommend = CustomerReview.find_by(user_id: current_user.id, listing_id: listing.id) %>
-        <% if @update_recommend %>
-            <%= render partial: 'welcome/recommend_form' %>
-        <% else %>
-           <%= render partial: 'welcome/new_recommend_form' %>
-        <% end %>
-      </div>
-      <%= listing.description %>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+
+<% end %>
