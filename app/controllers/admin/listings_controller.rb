@@ -1,4 +1,4 @@
-class Admin::ListingsController < ApplicationController
+ class Admin::ListingsController < ApplicationController
   layout 'admin'
   include AdminsHelper
 
