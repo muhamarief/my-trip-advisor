@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420032143) do
+ActiveRecord::Schema.define(version: 20170420043903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 20170420032143) do
   end
 
   create_table "customer_reviews", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "listing_id", null: false
+    t.integer  "user_id",                    null: false
+    t.integer  "listing_id",                 null: false
     t.decimal  "rating"
     t.string   "comment"
-    t.boolean  "recommend"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "recommend",  default: false
     t.index ["listing_id"], name: "index_customer_reviews_on_listing_id", using: :btree
     t.index ["user_id"], name: "index_customer_reviews_on_user_id", using: :btree
   end

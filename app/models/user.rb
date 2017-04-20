@@ -17,7 +17,7 @@ class User < ApplicationRecord
       user.username = auth["info"]["name"]
       user.email = auth["extra"]["raw_info"]["email"]
       user.password = SecureRandom.hex(6)
-      user.password_confirmation = user[:password]
+      user.password_confirmation = user.password
     end
   end
 

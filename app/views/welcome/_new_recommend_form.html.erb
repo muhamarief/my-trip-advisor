@@ -1,0 +1,4 @@
+<%= form_for [listing, @customer_review_new], id: "#{listing.id}"  do |form| %>
+  <%= form.hidden_field :recommend, value: 1%>
+  <%= form.submit value: "Recommend", class: "btn btn-success"%>
+<% end %>
