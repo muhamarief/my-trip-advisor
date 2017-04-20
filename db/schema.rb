@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418114017) do
+ActiveRecord::Schema.define(version: 20170420032143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,78 @@ ActiveRecord::Schema.define(version: 20170418114017) do
     t.datetime "updated_at",                      null: false
   end
 
+  create_table "booking_items", force: :cascade do |t|
+    t.date     "start_date",            null: false
+    t.date     "end_date",              null: false
+    t.integer  "duration_in_minutes",   null: false
+    t.integer  "last_order_in_minutes", null: false
+    t.decimal  "price",                 null: false
+    t.decimal  "slot_fee",              null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "customer_reviews", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "listing_id", null: false
+    t.decimal  "rating"
+    t.string   "comment"
+    t.boolean  "recommend"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_customer_reviews_on_listing_id", using: :btree
+    t.index ["user_id"], name: "index_customer_reviews_on_user_id", using: :btree
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.integer  "admin_id"
+    t.string   "item_name"
+    t.text     "description"
+    t.integer  "booking_item_id"
+    t.integer  "subscribe_item_id"
+    t.integer  "purchase_item_id"
+    t.json     "photos"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "type_id"
+    t.index ["admin_id"], name: "index_listings_on_admin_id", using: :btree
+    t.index ["booking_item_id"], name: "index_listings_on_booking_item_id", using: :btree
+    t.index ["purchase_item_id"], name: "index_listings_on_purchase_item_id", using: :btree
+    t.index ["subscribe_item_id"], name: "index_listings_on_subscribe_item_id", using: :btree
+    t.index ["type_id"], name: "index_listings_on_type_id", using: :btree
+  end
+
+  create_table "purchase_items", force: :cascade do |t|
+    t.integer  "quantity",   null: false
+    t.integer  "price",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "booking_item_id",             null: false
+    t.datetime "started_at",                  null: false
+    t.datetime "finished_at",                 null: false
+    t.integer  "slot",                        null: false
+    t.integer  "booking_count",   default: 0, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["booking_item_id"], name: "index_schedules_on_booking_item_id", using: :btree
+  end
+
+  create_table "subscribe_items", force: :cascade do |t|
+    t.integer  "capacity",           null: false
+    t.integer  "capacity_count",     null: false
+    t.integer  "subscribe_duration", null: false
+    t.integer  "price",              null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "types", force: :cascade do |t|

@@ -1,0 +1,30 @@
+// Place all the styles related to the Listings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#admin-listings{
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #F6F5F5;
+  border-radius: 3px;
+  border: 1px solid #eee;
+}
+
+#admin-listings-action{
+  margin-top: 100px;
+}
+
+.listings-index {
+  background-color: white;
+  padding: 30px;
+  margin: 20px;
+}
+
+.add-listing-details{
+  margin-top: 20px;
+}
+
+.listings-item-name{
+  font-size: 20px;
+  color: #42BDB7;
+  font-weight: 300;
+}
