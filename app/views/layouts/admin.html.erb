@@ -11,7 +11,7 @@
   <body>
     <div id='user_header'>
       <% if admin_logged_in? %>
-          <%= link_to 'Listings', admin_listings_path %>
+          <%= link_to 'Outlets', admin_outlets_path %>
           <%= link_to 'My Profile', admin_path(current_admin) %>
           <%= link_to 'All Admins', admins_path %>
           <%= link_to 'Logout', auth_admin_path(current_admin), method: :delete %>

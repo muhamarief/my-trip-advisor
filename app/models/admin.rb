@@ -8,6 +8,9 @@ class Admin < ApplicationRecord
 
   before_create :set_last_sign_in
 
+  has_many :outlets
+  has_many :listings
+
   def set_last_sign_in
     self.last_sign_in = DateTime.now
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420043903) do
+ActiveRecord::Schema.define(version: 20170420181052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,11 +66,26 @@ ActiveRecord::Schema.define(version: 20170420043903) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "type_id"
+    t.integer  "outlet_id"
     t.index ["admin_id"], name: "index_listings_on_admin_id", using: :btree
     t.index ["booking_item_id"], name: "index_listings_on_booking_item_id", using: :btree
+    t.index ["outlet_id"], name: "index_listings_on_outlet_id", using: :btree
     t.index ["purchase_item_id"], name: "index_listings_on_purchase_item_id", using: :btree
     t.index ["subscribe_item_id"], name: "index_listings_on_subscribe_item_id", using: :btree
     t.index ["type_id"], name: "index_listings_on_type_id", using: :btree
+  end
+
+  create_table "outlets", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.integer  "admin_id",     null: false
+    t.string   "phone_number"
+    t.string   "gmap_address", null: false
+    t.float    "latitude",     null: false
+    t.float    "longitude",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "detail"
+    t.index ["admin_id"], name: "index_outlets_on_admin_id", using: :btree
   end
 
   create_table "purchase_items", force: :cascade do |t|
@@ -118,4 +133,5 @@ ActiveRecord::Schema.define(version: 20170420043903) do
     t.string   "uid"
   end
 
+  add_foreign_key "listings", "outlets"
 end
