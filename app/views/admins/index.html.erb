@@ -1,0 +1,24 @@
+<div class='col-md-8 col-sm-12 col-xs-12 col-md-offset-2 admins-index-container'>
+  <% @admins.each do |admin| %>
+      <div class='admin-index'>
+          <div class='col-md-8 col-xs-8 col-sm-8'>
+              <p>username: <%= admin.username %></p>
+              <p>email: <%= admin.email %></p>
+              <p>Signed in count<%= admin.sign_in_count %></p>
+              <p>Last Sign In<%= admin.last_sign_in %></p>
+          </div>
+
+          <% if current_admin.super_admin || current_admin == admin %>
+              <div class='col-md-4 col-sm-4 col-xs-4'>
+                <p><%= link_to "Edit Admin", edit_admin_path(admin) %></p>
+                <% if current_admin.super_admin %>
+                  <p><%= link_to "Unactivate this admin", admin_path(admin), method: :delete %></p>
+                <% end %>
+              </div>
+          <% end %>
+      </div>
+  <% end %>
+</div>
+<% if current_admin.super_admin %>
+  <%= link_to "Set New Admin", new_admin_path %>
+<% end %>
