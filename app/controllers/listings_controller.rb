@@ -1,14 +1,12 @@
 class ListingsController < ApplicationController
 
-  def new
-    @listing = Listing.new
-  end
-
-  def create
-  end
-
   def index
     @listings = Listing.all
   end
-  
+
+  def show
+    @listing = Listing.find(params[:id])
+    @latitude = @listing.outlet.latitude
+    @longitude = @listing.outlet.longitude
+  end
 end

@@ -1,10 +1,19 @@
 <% if logged_in? %>
+  <center>
+      <%= search_form_for @q, :url => root_path do |f| %>
+          <%= f.label :name_of_the_item %>
+          <%= f.search_field :item_name_cont %>
 
+          <%= f.submit %>
+      <% end %>
+  </center>
   <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id="listing-index-container">
     <%@listings.each do |listing| %>
       <div class="jumbotron listing-user-index">
         <div class='col-md-9 col-xs-9 col-sm-9'>
-          <h5 class='user-listing-title'><%= listing.item_name %></h5>
+          <%= link_to listing_path(listing) do %>
+            <h5 class='user-listing-title'><%= listing.item_name %></h5>
+          <% end %>
         </div>
         <div class='col-md-3 col-xs-3 col-sm-3'>
           <% @update_recommend = CustomerReview.find_by(user_id: current_user.id, listing_id: listing.id) %>
