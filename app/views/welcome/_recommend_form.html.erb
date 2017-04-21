@@ -2,12 +2,10 @@
     <%= form_for @update_recommend, html: {id: "#{@update_recommend.id}"} do |form| %>
       <%= form.hidden_field :recommend, value: 0%>
       <%= form.submit value: "UnRecommend", class: "btn btn-danger", data: { disable_with: false } %>
-      <!-- <input type="submit" name="commit" value= "UnRecommend" class="btn btn-danger" /> -->
     <% end %>
 <% else %>
     <%= form_for @update_recommend, html: {id: "#{@update_recommend.id}"} do |form| %>
       <%= form.hidden_field :recommend, value: 1%>
       <%= form.submit value: "Recommend", class: "btn btn-success", data: { disable_with: false } %>
-      <!-- <input type="submit" name="commit" value= "Recommend" class="btn btn-success" /> -->
     <% end %>
 <% end %>
