@@ -20,7 +20,7 @@
           <% if @update_recommend %>
               <%= render partial: 'welcome/recommend_form' %>
           <% else %>
-             <%= render partial: 'welcome/new_recommend_form' %>
+             <%= render partial: 'welcome/new_recommend_form', locals: {listing: listing} %>
           <% end %>
         </div>
         <%= listing.description %>

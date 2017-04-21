@@ -8,7 +8,8 @@ class CustomerReviewsController < ApplicationController
       @customer_review.user_id = current_user.id
       if @customer_review.save
         @value = @customer_review.recommend
-        render :json => @value.to_json
+        @update_recommend = @customer_review
+        render template: '/welcome/_recommend_form', layout: false
       else
         redirect_to root_path
       end
@@ -21,7 +22,6 @@ class CustomerReviewsController < ApplicationController
     if @customer_review.update(customer_review_params)
       @update_recommend = @customer_review
       render template: '/welcome/_recommend_form', layout: false
-      # render :json => @value.to_json
     else
       redirect_to root_path
     end
