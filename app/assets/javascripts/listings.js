@@ -8,7 +8,6 @@
 //       var longitude = $('input[name="longitude"]').attr('value')
 //       var myLatLng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
 //       // var myLatLng = {lat: -25.363, lng: 131.044};
-//       debugger
 //
 //       var map = new google.maps.Map(document.getElementById('listing-map'), {
 //         zoom: 4,
