@@ -3,11 +3,10 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on('turbolinks:load', function(){
   $('.col-md-3').on('submit', '.edit_customer_review', function(event){
-  // $('.edit_customer_review').on('submit',function(event){
     event.preventDefault()
     myEvent = event
     $.ajax({
-      url: `/customer_reviews/${$('.edit_customer_review').attr('id')}`,
+      url: '/customer_reviews/' + $('.edit_customer_review').attr('id'),
       method: "PATCH",
       data: $(event.target).serialize(),
       success: function(response){
@@ -17,11 +16,10 @@ $(document).on('turbolinks:load', function(){
   })
 
   $('.col-md-3').on('submit', '.new_customer_review', function(event){
-  // $('.edit_customer_review').on('submit',function(event){
     event.preventDefault()
     myEvent = event
     $.ajax({
-      url: `/listings/${$('.new_customer_review').attr('id')}/customer_reviews`,
+      url: '/listings/' + $('.new_customer_review').attr('id') + '/customer_reviews',
       method: "POST",
       data: $(event.target).serialize(),
       success: function(response){
