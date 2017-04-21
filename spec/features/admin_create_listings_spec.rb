@@ -16,7 +16,7 @@ RSpec.feature "Admin Create a Listing", :type => :feature do
     visit new_admin_outlet_listing_path(outlet, listing)
     fill_in 'listing_item_name', with: "New Item Listing"
     fill_in 'listing_description', with: "The description"
-
+    
     click_button 'Create Listing'
 
     expect(page).to have_current_path(admin_outlet_listings_path(outlet))

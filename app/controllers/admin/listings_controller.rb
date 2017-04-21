@@ -11,9 +11,9 @@
     @listing = Listing.new(listing_params)
     @listing.admin_id = current_admin.id
     @listing.outlet_id = params[:outlet_id]
+    @outlet = Outlet.find(params[:outlet_id])
     if @listing.save
-      @outlet = @listing.outlet
-      redirect_to admin_outlet_listings_path(@listing.outlet)
+      redirect_to admin_outlet_listings_path(@outlet)
     else
       render :new
     end
