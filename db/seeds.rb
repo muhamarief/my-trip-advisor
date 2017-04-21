@@ -10,8 +10,8 @@ super_admin = Admin.new(username: "muhamarief", email: "marief.rahman279@yahoo.c
 
 admin = Admin.new(username: "dindaputri", email: "dinda@yahoo.com", password: "qwertyuiop", password_confirmation: "qwertyuiop", super_admin: false)
 
-super_admin.create!
-admin.create!
+super_admin.save!
+admin.save!
 
 categories = {
   "Restaurants" => [
