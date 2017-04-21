@@ -1,0 +1,26 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id='admin-listings-action'>
+  <%= button_to "Create New Outlet", new_admin_outlet_path, method: :get %>
+</div>
+
+<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id='admin-listings'>
+  <% @outlets.each do |outlet| %>
+        <div class='listings-index'>
+          <%= link_to edit_admin_outlet_path(outlet) do %>
+            <h5 class='listings-item-name'><%= outlet.name%></h5>
+          <% end %>
+          <%= outlet.detail %>
+          <div class='add-listing-details'>
+              <div class='col-md-6 col-sm-6 col-xs-6'>
+                <center>
+                  <%=link_to "Add Listing to Outlet", new_admin_outlet_listing_path(outlet) %>
+                </center>
+              </div>
+              <div class='col-md-6 col-sm-6 col-xs-6'>
+                <center>
+                  <%=link_to "Show, Outlet's Listing", admin_outlet_listings_path(outlet) %>
+                </center>
+              </div>
+          </div>
+        </div>
+  <% end %>
+</div>

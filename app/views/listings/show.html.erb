@@ -1,0 +1,38 @@
+<div class='col-md-10 col-xs-12 col-sm-12 col-md-offset-1' id='listing-show-container'>
+  <div class="col-md-8 col-xs-8 col-sm-8">
+    <h3>  <%= @listing.item_name%></h3>
+    <p>  <%= @listing.type.category.name %> ||  <%= @listing.type.name%></p>
+    <p>  <%= @listing.description%> </p>
+  </div>
+  <div class="col-md-4 col-xs-4 col-sm-4" id='outlet-container'>
+    <p> Outlet </p>
+    <h4> <%= @listing.outlet.name %> </h4>
+    <p> <%= @listing.outlet.phone_number %>
+    <%= hidden_field_tag :latitude, @latitude %>
+    <%= hidden_field_tag :longitude, @longitude %>
+    <div id="listing-map"></div>
+  </div>
+</div>
+
+<script>
+
+function initMap(){
+    var latitude = $('input[name="latitude"]').attr('value')
+    var longitude = $('input[name="longitude"]').attr('value')
+    var myLatLng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+    // var myLatLng = {lat: -25.363, lng: 131.044};
+    debugger
+
+    var map = new google.maps.Map(document.getElementById('listing-map'), {
+      zoom: 14,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+    });
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA77EgUXGcvB5bxIqR_BeWTA0Zv9DdvL-U&callback=initMap">
+</script>

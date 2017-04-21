@@ -17,6 +17,7 @@
   end
 
   def index
+    @outlet = Outlet.find(params[:outlet_id])
     @listings = Listing.all
   end
 

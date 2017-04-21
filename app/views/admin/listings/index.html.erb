@@ -1,13 +1,13 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id='admin-listings-action'>
-  <%= button_to "Create New Listing", new_admin_listing_path, method: :get %>
+  <%= button_to "Create New Listing", new_admin_outlet_listing_path(@outlet), method: :get %>
 </div>
 
 <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id='admin-listings'>
   <% @listings.each do |listing| %>
         <div class='listings-index'>
-          <a href='/admin/listings/<%=listing.id%>/edit'>
+          <%= link_to edit_admin_listing_path(listing) do %>
             <h5 class='listings-item-name'><%= listing.item_name%></h5>
-          </a>
+          <% end %>
           <%= listing.description %>
           <div class='add-listing-details'>
               <div class='col-md-4 col-sm-4 col-xs-4'>

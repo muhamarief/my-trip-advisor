@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   resources :customer_reviews, only: [:update]
 
   namespace :admin do
-    resources :listings do
+    resources :outlets, except: :show do
+      resources :listings, only: [:new, :create, :index]
+    end
+    resources :listings, only: [:delete, :edit, :update] do
       resources :booking_items
       resources :purchase_items
       resources :subscribe_items
