@@ -1,6 +1,7 @@
  class Admin::ListingsController < ApplicationController
   layout 'admin'
   include AdminsHelper
+  before_action :require_login_admin
 
   def new
     @listing = Listing.new
@@ -40,6 +41,13 @@
   private
   def listing_params
     params.require(:listing).permit(:item_name, :description, :type_id, :admin_id, :outlet_id)
+  end
+
+  def require_login_admin
+    unless admin_logged_in?
+      flash[:error] = "You dont have access to this page"
+      redirect_to new_auth_admin_path # halts request cycle
+    end
   end
 
 end
